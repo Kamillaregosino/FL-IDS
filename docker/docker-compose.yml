@@ -1,0 +1,191 @@
+# Gerado por gerar.py 
+x-base: &base
+  build: .
+  image: fl-ids-artigo
+
+services:
+  servidor:
+    <<: *base
+    command: python servidor.py
+    environment: {N: 5, NT: 20, RODADAS: 2}
+    volumes: [./dados/teste.npz:/dados/teste.npz:ro]
+  cliente0:
+    <<: *base
+    command: python cliente.py
+    environment: {CID: 0, E: 1, B: 16}
+    volumes: [./dados/cliente_0.npz:/dados/particao.npz:ro]
+    mem_limit: 400m
+    cpus: 0.5
+    depends_on: [servidor]
+    restart: on-failure
+  cliente1:
+    <<: *base
+    command: python cliente.py
+    environment: {CID: 1, E: 1, B: 16}
+    volumes: [./dados/cliente_1.npz:/dados/particao.npz:ro]
+    mem_limit: 400m
+    cpus: 0.5
+    depends_on: [servidor]
+    restart: on-failure
+  cliente2:
+    <<: *base
+    command: python cliente.py
+    environment: {CID: 2, E: 1, B: 16}
+    volumes: [./dados/cliente_2.npz:/dados/particao.npz:ro]
+    mem_limit: 400m
+    cpus: 0.5
+    depends_on: [servidor]
+    restart: on-failure
+  cliente3:
+    <<: *base
+    command: python cliente.py
+    environment: {CID: 3, E: 1, B: 16}
+    volumes: [./dados/cliente_3.npz:/dados/particao.npz:ro]
+    mem_limit: 400m
+    cpus: 0.5
+    depends_on: [servidor]
+    restart: on-failure
+  cliente4:
+    <<: *base
+    command: python cliente.py
+    environment: {CID: 4, E: 1, B: 16}
+    volumes: [./dados/cliente_4.npz:/dados/particao.npz:ro]
+    mem_limit: 400m
+    cpus: 0.5
+    depends_on: [servidor]
+    restart: on-failure
+  cliente5:
+    <<: *base
+    command: python cliente.py
+    environment: {CID: 5, E: 1, B: 16}
+    volumes: [./dados/cliente_5.npz:/dados/particao.npz:ro]
+    mem_limit: 400m
+    cpus: 0.5
+    depends_on: [servidor]
+    restart: on-failure
+  cliente6:
+    <<: *base
+    command: python cliente.py
+    environment: {CID: 6, E: 1, B: 16}
+    volumes: [./dados/cliente_6.npz:/dados/particao.npz:ro]
+    mem_limit: 400m
+    cpus: 0.5
+    depends_on: [servidor]
+    restart: on-failure
+  cliente7:
+    <<: *base
+    command: python cliente.py
+    environment: {CID: 7, E: 1, B: 16}
+    volumes: [./dados/cliente_7.npz:/dados/particao.npz:ro]
+    mem_limit: 400m
+    cpus: 0.5
+    depends_on: [servidor]
+    restart: on-failure
+  cliente8:
+    <<: *base
+    command: python cliente.py
+    environment: {CID: 8, E: 1, B: 16}
+    volumes: [./dados/cliente_8.npz:/dados/particao.npz:ro]
+    mem_limit: 400m
+    cpus: 0.5
+    depends_on: [servidor]
+    restart: on-failure
+  cliente9:
+    <<: *base
+    command: python cliente.py
+    environment: {CID: 9, E: 1, B: 16}
+    volumes: [./dados/cliente_9.npz:/dados/particao.npz:ro]
+    mem_limit: 400m
+    cpus: 0.5
+    depends_on: [servidor]
+    restart: on-failure
+  cliente10:
+    <<: *base
+    command: python cliente.py
+    environment: {CID: 10, E: 1, B: 16}
+    volumes: [./dados/cliente_10.npz:/dados/particao.npz:ro]
+    mem_limit: 400m
+    cpus: 0.5
+    depends_on: [servidor]
+    restart: on-failure
+  cliente11:
+    <<: *base
+    command: python cliente.py
+    environment: {CID: 11, E: 1, B: 16}
+    volumes: [./dados/cliente_11.npz:/dados/particao.npz:ro]
+    mem_limit: 400m
+    cpus: 0.5
+    depends_on: [servidor]
+    restart: on-failure
+  cliente12:
+    <<: *base
+    command: python cliente.py
+    environment: {CID: 12, E: 1, B: 16}
+    volumes: [./dados/cliente_12.npz:/dados/particao.npz:ro]
+    mem_limit: 400m
+    cpus: 0.5
+    depends_on: [servidor]
+    restart: on-failure
+  cliente13:
+    <<: *base
+    command: python cliente.py
+    environment: {CID: 13, E: 1, B: 16}
+    volumes: [./dados/cliente_13.npz:/dados/particao.npz:ro]
+    mem_limit: 400m
+    cpus: 0.5
+    depends_on: [servidor]
+    restart: on-failure
+  cliente14:
+    <<: *base
+    command: python cliente.py
+    environment: {CID: 14, E: 1, B: 16}
+    volumes: [./dados/cliente_14.npz:/dados/particao.npz:ro]
+    mem_limit: 400m
+    cpus: 0.5
+    depends_on: [servidor]
+    restart: on-failure
+  cliente15:
+    <<: *base
+    command: python cliente.py
+    environment: {CID: 15, E: 1, B: 16}
+    volumes: [./dados/cliente_15.npz:/dados/particao.npz:ro]
+    mem_limit: 400m
+    cpus: 0.5
+    depends_on: [servidor]
+    restart: on-failure
+  cliente16:
+    <<: *base
+    command: python cliente.py
+    environment: {CID: 16, E: 1, B: 16}
+    volumes: [./dados/cliente_16.npz:/dados/particao.npz:ro]
+    mem_limit: 400m
+    cpus: 0.5
+    depends_on: [servidor]
+    restart: on-failure
+  cliente17:
+    <<: *base
+    command: python cliente.py
+    environment: {CID: 17, E: 1, B: 16}
+    volumes: [./dados/cliente_17.npz:/dados/particao.npz:ro]
+    mem_limit: 400m
+    cpus: 0.5
+    depends_on: [servidor]
+    restart: on-failure
+  cliente18:
+    <<: *base
+    command: python cliente.py
+    environment: {CID: 18, E: 1, B: 16}
+    volumes: [./dados/cliente_18.npz:/dados/particao.npz:ro]
+    mem_limit: 400m
+    cpus: 0.5
+    depends_on: [servidor]
+    restart: on-failure
+  cliente19:
+    <<: *base
+    command: python cliente.py
+    environment: {CID: 19, E: 1, B: 16}
+    volumes: [./dados/cliente_19.npz:/dados/particao.npz:ro]
+    mem_limit: 400m
+    cpus: 0.5
+    depends_on: [servidor]
+    restart: on-failure

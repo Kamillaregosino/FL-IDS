@@ -1,0 +1,13 @@
+# ambiente
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# gerados a partir de dataset/ (src/comum.py e docker/gerar.py recriam)
+cache/
+docker/dados/
+
+# saídas longas do Flower/Ray; as curvas ficam em resultados/
+logs/*
+!logs/tabela2_progresso.log

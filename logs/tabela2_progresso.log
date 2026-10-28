@@ -1,0 +1,65 @@
+14:03 iniciando N=5 E=1 B=16
+14:10 fim N=5 E=1 B=16: rodada 100  acurácia global 0.9601
+14:10 iniciando N=10 E=1 B=16
+14:18 fim N=10 E=1 B=16: rodada 100  acurácia global 0.9602
+14:18 iniciando N=15 E=1 B=16
+14:28 fim N=15 E=1 B=16: rodada 100  acurácia global 0.9591
+14:28 iniciando N=20 E=1 B=16
+./rodar_tabela2.sh: linha 11: 618122 Falta de segmentação  (núcleo despejado) $PY federado.py --N "$1" --E "$2" --B "$3" --rodadas 100 $EXTRA > "$log" 2>&1
+14:43 fim N=20 E=1 B=16: rodada 100  acurácia global 0.9602
+14:43 iniciando N=5 E=15 B=32
+14:43 fim N=5 E=15 B=32: ERRO
+14:43 iniciando N=5 E=15 B=64
+14:43 fim N=5 E=15 B=64: ERRO
+14:43 iniciando N=5 E=15 B=128
+14:43 fim N=5 E=15 B=128: ERRO
+14:43 iniciando N=5 E=15 B=256
+14:43 fim N=5 E=15 B=256: ERRO
+14:43 iniciando N=5 E=5 B=16
+14:43 fim N=5 E=5 B=16: ERRO
+14:43 iniciando N=5 E=10 B=16
+14:43 fim N=5 E=10 B=16: ERRO
+14:43 iniciando N=5 E=15 B=16
+14:43 fim N=5 E=15 B=16: ERRO
+14:43 iniciando N=5 E=20 B=16
+14:43 fim N=5 E=20 B=16: ERRO
+--- retomada em 28/10 12:57 ---
+já concluída: logs/fl_norm_N5_E1_B16.log
+já concluída: logs/fl_norm_N10_E1_B16.log
+já concluída: logs/fl_norm_N15_E1_B16.log
+já concluída: logs/fl_norm_N20_E1_B16.log
+12:57 iniciando N=5 E=15 B=32
+13:15 fim N=5 E=15 B=32: rodada 100  acurácia global 0.9892
+13:15 iniciando N=5 E=15 B=64
+13:28 fim N=5 E=15 B=64: rodada 100  acurácia global 0.9853
+13:28 iniciando N=5 E=15 B=128
+13:37 fim N=5 E=15 B=128: rodada 100  acurácia global 0.9863
+13:37 iniciando N=5 E=15 B=256
+13:44 fim N=5 E=15 B=256: rodada 100  acurácia global 0.9733
+13:44 iniciando N=5 E=5 B=16
+13:58 fim N=5 E=5 B=16: rodada 100  acurácia global 0.9777
+13:58 iniciando N=5 E=10 B=16
+14:19 fim N=5 E=10 B=16: rodada 100  acurácia global 0.9840
+14:19 iniciando N=5 E=15 B=16
+14:56 fim N=5 E=15 B=16: rodada 100  acurácia global 0.9911
+14:56 iniciando N=5 E=20 B=16
+15:16 fim N=5 E=20 B=16: ERRO
+--- retomada em 28/10 16:22 (E=20 caiu às 15:16 por suspensão do sistema) ---
+já concluída: logs/fl_norm_N5_E1_B16.log
+já concluída: logs/fl_norm_N10_E1_B16.log
+já concluída: logs/fl_norm_N15_E1_B16.log
+já concluída: logs/fl_norm_N20_E1_B16.log
+já concluída: logs/fl_norm_N5_E15_B32.log
+já concluída: logs/fl_norm_N5_E15_B64.log
+já concluída: logs/fl_norm_N5_E15_B128.log
+já concluída: logs/fl_norm_N5_E15_B256.log
+já concluída: logs/fl_norm_N5_E5_B16.log
+já concluída: logs/fl_norm_N5_E10_B16.log
+já concluída: logs/fl_norm_N5_E15_B16.log
+16:22 iniciando N=5 E=20 B=16
+17:05 fim N=5 E=20 B=16: rodada 100  acurácia global 0.9916
+--- 28/10 17:25 FL-IDS: refazendo N=10, 15, 20 e E=20 (inválidas por falta de memória) com PARALELOS=3 ---
+já concluída: logs/fl_norm_N5_E1_B16.log
+17:25 iniciando N=10 E=1 B=16 (paralelos=3)
+17:34 fim N=10 E=1 B=16: rodada 100  acurácia global 0.9598 · rodadas com clientes perdidos: 39
+17:34 iniciando N=15 E=1 B=16 (paralelos=3)
