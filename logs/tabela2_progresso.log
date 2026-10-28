@@ -63,3 +63,14 @@ já concluída: logs/fl_norm_N5_E1_B16.log
 17:25 iniciando N=10 E=1 B=16 (paralelos=3)
 17:34 fim N=10 E=1 B=16: rodada 100  acurácia global 0.9598 · rodadas com clientes perdidos: 39
 17:34 iniciando N=15 E=1 B=16 (paralelos=3)
+17:41 fim N=15 E=1 B=16: rodada 100  acurácia global 0.9593 · rodadas com clientes perdidos: 68
+17:41 iniciando N=20 E=1 B=16 (paralelos=3)
+17:49 fim N=20 E=1 B=16: rodada 100  acurácia global 0.9599 · rodadas com clientes perdidos: 71
+já concluída: logs/fl_norm_N5_E15_B32.log
+já concluída: logs/fl_norm_N5_E15_B64.log
+já concluída: logs/fl_norm_N5_E15_B128.log
+já concluída: logs/fl_norm_N5_E15_B256.log
+já concluída: logs/fl_norm_N5_E5_B16.log
+já concluída: logs/fl_norm_N5_E10_B16.log
+já concluída: logs/fl_norm_N5_E15_B16.log
+17:49 iniciando N=5 E=20 B=16 (paralelos=3)

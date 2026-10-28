@@ -21,6 +21,7 @@ class ClienteKDD(fl.client.NumPyClient):
         self.x, self.y = _particao(cid, normalizar)
 
     def fit(self, parametros, config):
+        tf.keras.backend.clear_session()  # libera o modelo da rodada anterior; sem isso a memória cresce a cada rodada
         tf.keras.utils.set_random_seed(SEED + 1000 * config["rodada"] + self.cid)
         modelo = construir_modelo()
         modelo.set_weights(parametros)  # parte do modelo global recebido

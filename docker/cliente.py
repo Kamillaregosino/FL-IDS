@@ -17,6 +17,7 @@ x, y = dados["X"], dados["y"]
 
 class Cliente(fl.client.NumPyClient):
     def fit(self, parametros, config):
+        tf.keras.backend.clear_session()  # libera o modelo da rodada anterior; sem isso a memória cresce a cada rodada
         tf.keras.utils.set_random_seed(42 + 1000 * config["rodada"] + CID)
         modelo = construir_modelo()
         modelo.set_weights(parametros)
