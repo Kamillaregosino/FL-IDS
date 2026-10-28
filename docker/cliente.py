@@ -15,12 +15,18 @@ dados = np.load("/dados/particao.npz")
 x, y = dados["X"], dados["y"]
 
 
+_modelo = {}  # modelo reaproveitado entre rodadas: treinar um modelo novo a cada rodada vaza memória
+
+
 class Cliente(fl.client.NumPyClient):
     def fit(self, parametros, config):
-        tf.keras.backend.clear_session()  # libera o modelo da rodada anterior; sem isso a memória cresce a cada rodada
         tf.keras.utils.set_random_seed(42 + 1000 * config["rodada"] + CID)
-        modelo = construir_modelo()
+        novo = construir_modelo()  # consome o gerador aleatório como antes, para o treino sair idêntico
+        modelo = _modelo.setdefault("m", novo)
         modelo.set_weights(parametros)
+        for v in modelo.optimizer.variables:  # Adam do zero, como num modelo novo
+            if "learning_rate" not in v.path:
+                v.assign(tf.zeros_like(v))
         modelo.fit(x, y, epochs=E, batch_size=B, verbose=0)
         return modelo.get_weights(), len(x), {}
 
