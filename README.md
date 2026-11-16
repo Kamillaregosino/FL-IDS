@@ -9,7 +9,7 @@ dados, e um servidor que só recebe os pesos e os combina com FedAvg (Flower). C
 modelo centralizado, como no artigo, e repetimos as 12 configurações da Tabela 2.
 
 ## Estrutura
-
+teste
 ```
 FL-IDS/
 ├── dataset/              KDD Cup 99: bruto, metadados, preproc.py e o CSV processado
