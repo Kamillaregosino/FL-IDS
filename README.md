@@ -64,18 +64,75 @@ Execuções longas:
 Para regenerar o CSV processado a partir do KDD bruto (usa 2–3 GB de RAM):
 `cd dataset && ../.venv/bin/python preproc.py`.
 
-### Docker (ainda não executado)
+### Docker: 1 servidor + 20 clientes em contêineres
+
+Cada cliente roda no seu próprio contêiner, só com a sua partição, e
+conversa com o servidor pela rede (gRPC, porta 8080). O modelo, as partições e a semente são os
+mesmos da simulação. 
+
+**Pré-requisitos**
+
+- Docker com Compose v2: `docker --version` e `docker compose version` devem responder.
+  Se aparecer `permission denied` no `docker.sock`, use `sudo` ou entre no grupo `docker`.
+- O ambiente `.venv` da raiz, só para gerar os dados (passo 1).
+- Cerca de 2 GB livres em disco para a imagem (`python:3.11-slim` + TensorFlow + Flower).
+
+**1. Gerar os dados de cada contêiner e o `docker-compose.yml`**
 
 ```bash
 cd docker
-../.venv/bin/python gerar.py --N 5 --E 1 --B 16 --rodadas 100 --normalizar   # dados e compose
-docker compose up --build
+../.venv/bin/python gerar.py --N 5 --E 1 --B 16 --rodadas 2 --normalizar
 ```
 
-Cada cliente fica num contêiner com só a sua partição, limitado a 0,5 CPU e 400 MB.
-Os limites somam 10 CPUs e 8 GB, mais do que uma máquina de 4 threads e 11 GiB comporta bem.
+Cria `dados/teste.npz` (só o servidor recebe), `dados/cliente_0.npz` … `cliente_19.npz` (um por
+contêiner) e o `docker-compose.yml` com N, E, B e o número de rodadas. Comece com `--rodadas 2`
+para um teste rápido. Opções: `--memoria` (padrão `400m`) e `--cpus` (padrão `0.5`) por cliente.
 
-## Escolhas onde o artigo é omisso
+**2. Construir a imagem e subir os 21 contêineres**
+
+```bash
+docker compose up --build -d
+docker compose ps
+```
+
+O `--build` refaz a imagem com o código atual. É obrigatório na primeira vez e depois de qualquer
+mudança em `servidor.py`, `cliente.py` ou `modelo.py`. O `docker compose ps` deve listar `servidor`
+e `cliente0` … `cliente19` em execução. Nos primeiros segundos um cliente pode cair por ainda
+não achar o servidor; o `restart: on-failure` o reinicia sozinho.
+
+**3. Acompanhar as rodadas**
+
+```bash
+docker compose logs -f servidor
+```
+
+O servidor imprime `rodada   0  acurácia global …` (modelo inicial) e depois uma linha por rodada.
+`Ctrl+C` só sai do log, não para os contêineres. Quando a última rodada aparece, o servidor encerra.
+
+**4. Guardar o resultado e desligar tudo**
+
+```bash
+docker compose logs --no-color servidor > ../logs/docker_N5_E1_B16_R2.log
+docker compose down
+```
+
+O servidor do Docker não grava CSV: a curva de acurácia fica só nesse log.
+
+**Como saber se deu certo**
+
+- `docker compose ps -a`: o `servidor` termina como `Exited (0)`.
+- O log do servidor chega a `rodada   2` (ou à última rodada pedida) e cada rodada mostra
+  `received 5 results and 0 failures`. Qualquer falha invalida o resultado, como na simulação.
+- Nenhum cliente morto por falta de memória:
+  `docker inspect --format '{{.Name}} {{.State.OOMKilled}}' $(docker compose ps -aq)` deve
+  mostrar `false` para todos. Se algum der `true`, gere de novo com `--memoria 600m`.
+
+**5. Experimento completo**
+
+Repita os passos 1 a 4 com `--rodadas 100` e a configuração desejada (por exemplo
+`--N 10 --E 1 --B 16`). 
+
+## Escolhas onde o artigo não falou
 
 | Lacuna | Escolha | Por quê |
 |---|---|---|
