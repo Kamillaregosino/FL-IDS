@@ -1,4 +1,4 @@
-# Gerado por gerar.py 
+# Gerado por gerar.py — não edite à mão
 x-base: &base
   build: .
   image: fl-ids-artigo

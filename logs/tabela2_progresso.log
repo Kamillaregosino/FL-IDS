@@ -97,3 +97,5 @@ já concluída: logs/fl_norm_N5_E5_B16.log
 já concluída: logs/fl_norm_N5_E10_B16.log
 já concluída: logs/fl_norm_N5_E15_B16.log
 19:28 iniciando N=5 E=20 B=16 (paralelos=3)
+20:19 fim N=5 E=20 B=16: rodada 100  acurácia global 0.9917 · rodadas com clientes perdidos: 0
+28/10 20:20 Tabela 2 completa: 12 de 12 configurações válidas (0 rodadas com clientes perdidos)
