@@ -1,0 +1,19 @@
+              precision    recall  f1-score   support
+
+      normal     0.9911    0.9925    0.9918     10000
+         dos     0.9921    0.9968    0.9945     10000
+       probe     0.9966    0.9900    0.9933     10000
+         r2l     0.7967    0.8475    0.8213       282
+         u2r     0.0000    0.0000    0.0000        13
+
+    accuracy                         0.9913     30295
+   macro avg     0.7553    0.7654    0.7602     30295
+weighted avg     0.9910    0.9913    0.9912     30295
+
+Matriz de confusão (linhas = classe real, colunas = classe prevista)
+ordem: normal, dos, probe, r2l, u2r
+[[9925    8    8   59    0]
+ [   7 9968   25    0    0]
+ [  27   71 9900    2    0]
+ [  42    0    1  239    0]
+ [  13    0    0    0    0]]
