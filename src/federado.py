@@ -17,7 +17,7 @@ import flwr as fl
 import tensorflow as tf
 from flwr.common import ndarrays_to_parameters
 
-from comum import AQUI, NT, RESULTADOS, SEED, carregar, construir_modelo
+from comum import AQUI, NT, RESULTADOS, SEED, carregar, construir_modelo, relatorio
 
 p = argparse.ArgumentParser()
 p.add_argument("--N", type=int, default=5, help="clientes por rodada")
@@ -43,6 +43,9 @@ def avaliar(rodada, pesos, config):
     avaliador.set_weights(pesos)
     loss, acc = avaliador.evaluate(d["X_test"], d["y_test"], verbose=0, batch_size=1024)
     print(f"rodada {rodada:3d}  acurácia global {acc:.4f}", flush=True)
+    if rodada == a.rodadas:  # modelo final: métricas por classe
+        relatorio(avaliador, d["X_test"], d["y_test"],
+                  f"fl_{'norm' if a.normalizar else 'bruto'}_N{a.N}_E{a.E}_B{a.B}")
     return loss, {"accuracy": acc}
 
 

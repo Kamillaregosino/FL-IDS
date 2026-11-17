@@ -6,7 +6,7 @@ import time
 
 import tensorflow as tf
 
-from comum import RESULTADOS, SEED, carregar, construir_modelo
+from comum import RESULTADOS, SEED, carregar, construir_modelo, relatorio
 
 p = argparse.ArgumentParser()
 p.add_argument("--epocas", type=int, default=100)
@@ -36,6 +36,10 @@ cb = AcuraciaTeste()
 t0 = time.time()
 modelo.fit(d["X_train"], d["y_train"], epochs=a.epocas, batch_size=a.batch, verbose=0, callbacks=[cb])
 print(f"tempo total: {time.time() - t0:.1f}s")
+
+
+relatorio(modelo, d["X_test"], d["y_test"],
+          f"centralizado_{'norm' if a.normalizar else 'bruto'}_B{a.batch}")
 
 nome = f"centralizado_{'norm' if a.normalizar else 'bruto'}_B{a.batch}.csv"
 os.makedirs(RESULTADOS, exist_ok=True)

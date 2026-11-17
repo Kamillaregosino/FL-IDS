@@ -78,3 +78,36 @@ def construir_modelo():
         metrics=["accuracy"],
     )
     return m
+
+
+
+CLASSES = ["normal", "dos", "probe", "r2l", "u2r"]
+
+
+def relatorio(modelo, X, y, nome):
+    """Salva precisão, recall e F1 por classe e a matriz de confusão em resultados/."""
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    from sklearn.metrics import ConfusionMatrixDisplay, classification_report, confusion_matrix
+
+    pred = np.argmax(modelo.predict(X, batch_size=1024, verbose=0), axis=1)
+    txt = classification_report(y, pred, labels=range(5), target_names=CLASSES,
+                                digits=4, zero_division=0)
+    cm = confusion_matrix(y, pred, labels=range(5))
+
+    os.makedirs(RESULTADOS, exist_ok=True)
+    with open(os.path.join(RESULTADOS, f"relatorio_{nome}.txt"), "w") as f:
+        f.write(txt)
+        f.write("\nMatriz de confusão (linhas = classe real, colunas = classe prevista)\n")
+        f.write("ordem: " + ", ".join(CLASSES) + "\n" + str(cm) + "\n")
+    np.savetxt(os.path.join(RESULTADOS, f"matriz_{nome}.csv"), cm, fmt="%d", delimiter=",")
+
+    ConfusionMatrixDisplay(cm, display_labels=CLASSES).plot(values_format="d", cmap="Blues")
+    plt.title(nome)
+    plt.tight_layout()
+    plt.savefig(os.path.join(RESULTADOS, f"matriz_{nome}.png"), dpi=200)
+    plt.close()
+    print(txt)
+    print(cm)
+
